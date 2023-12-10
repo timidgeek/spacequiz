@@ -1,0 +1,42 @@
+/* fonts */
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Bubbles&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dhurjati&family=Silkscreen&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Changa:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Londrina+Outline&display=swap');
+
+  /* font-family: 'Dhurjati', sans-serif; */
+  /* font-family: 'Silkscreen', sans-serif; */
+  /* font-family: 'Rubik Bubbles', sans-serif; */
+
+/* variables */
+:root {
+  --peach-light:#f8b195;
+  --peach-bright:#f67280;
+  --rose: #c06c84;
+  --plum:#6c5b7b;
+  --slate-blue:#0d4b71;
+  --cream:#F0E9D9;
+
+
+  --body-font: 16px;
+  --header-font: 60px;
+}
+
+h1 {
+  font-family: 'Londrina Outline', sans-serif;
+  font-size: var(--header-font);
+  color: var(--peach-light);
+}
+
+body {
+  background-color: var(--slate-blue);
+}
+
+.btn {
+  font-family: 'Changa', sans-serif;
+  background-color: var(--peach-bright);
+  padding: 12px 16px;
+  border-radius: 50%;
+  border: none;
+  color: var(--cream);
+}
