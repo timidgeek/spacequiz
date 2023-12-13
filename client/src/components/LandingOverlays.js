@@ -26,7 +26,7 @@ function LogInOverlay() {
 
 function SignUpOverlay() {
   function closeOverlay() {
-    document.querySelector(".overlayWrapper").style.display = "none";
+    document.querySelector(".overlayWrapper#signUp").style.display = "none";
   }
   return (
     <div className="overlayWrapper" id="signUp">
@@ -50,6 +50,14 @@ function SignUpOverlay() {
             <p>Choose Profile Picture</p>
             <input type="file" name="profilePic" accept="image/*" />
           </label>
+          <div id="imageOptions">
+            <input type="radio" id="pic1" name="profilePic" value="image1.jpg" />
+            <label for="pic1"><img src="./images/person_avatar_1.png" alt="Image 1" /></label>
+
+            <input type="radio" id="pic2" name="profilePic" value="image2.jpg" />
+            <label for="pic2"><img src="./images/person_avatar_2.png" alt="Image 2" /></label>
+
+          </div>
           <input type="submit" value="Sign up" />
         </form>
     </div>

@@ -53,6 +53,7 @@ button.secondary {
 
 .App-header {
   background-color: #282c34;
+  /* background-color: #403E3A; */
   min-height: 100vh;
   display: flex;
   flex-direction: column;
