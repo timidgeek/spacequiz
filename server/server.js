@@ -1,17 +1,54 @@
 const express = require("express");
+const cors = require("cors");
+const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 const app = express();
 
-const cors = require("cors");
-
 require("dotenv").config({ path: "./config.env" });
 const port = process.env.PORT || 5000;
+
+mongoose.connect(process.env.ATLAS_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
 app.use(cors());
 
 app.use(express.json());
 
 app.use(require("./routes/record"));
+
+const User = require("./models/spaceUsers");
+
+app.post("/auth/register", async (req, res) => {
+  try {
+    const { username, password, planetOfOrigin } = req.body;
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const newUser = new User({ username: username, password: hashedPassword, planetOfOrigin: planetOfOrigin });
+    await newUser.save();
+    res.status(201).json({ message: "User registered successfully!" });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.post("/auth/login", async (req, res) => {
+  try {
+    const { username, password } = req.body;
+    const user = await User.findOne({ username });
+
+    if (user && bcrypt.compareSync(password, user.password)) {
+      const token = jwt.sign({ userId: user._id }, "secret-space-key", { expiresIn: "1h" });
+      res.json({ token });
+    } else {
+      res.status(401).json({ message: "Invalid credentials" });
+    }
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
 
 // Get MongoDB driver connection
 const dbo = require("./db/conn");
