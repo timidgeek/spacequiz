@@ -1,0 +1,19 @@
+:root {
+
+  --peach-light:#f8b195;
+  --peach-bright:#f67280;
+  --rose: #c06c84;
+  --plum:#6c5b7b;
+  --slate-blue:#154B71;
+  --cream:#F0E9D9;
+
+  --text:var(--peach-light);
+  --background:var(--slate-blue);
+  --primary:var(--peach-bright);
+  --secondary:var(--rose);
+  --accent:var(--plum);
+
+
+  --body-font: 16px;
+  --header-font: 60px;
+}

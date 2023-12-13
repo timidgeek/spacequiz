@@ -1,0 +1,75 @@
+@import 'root.css';
+
+.overlayWrapper {
+  background-color: var(--background);
+  color: var(--text);
+  width: 30vw;
+  height: 80vh;
+  border-radius: 50px;
+  box-shadow: 0px 0px 100px 50px rgba(246, 114, 128, 0.25);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  display: none;
+
+  position: absolute;
+  /* position in the center of the screen */
+  margin: auto;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  left: 0;
+
+}
+
+.theX {
+  position: absolute;
+  top: 25px;
+  right: 35px;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+}
+
+/* submit button */
+input[type=submit] {
+  border-radius: 50px;
+  padding: 15px 45px;
+  border: none;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: normal;
+  color: var(--background);
+  background-color: var(--primary);
+}
+
+/* text input */
+input[type=text] {
+  display: block;
+  border-radius: 5px;
+  border: none;
+  padding: 10px;
+  width: inherit;
+  margin: 8px 0;
+}
+.textInput {
+  color: var(--text);
+  width: 90%;
+  margin: 10px;
+}
+.textInput input {
+  background-color: var(--accent);
+}
+.textInput input::placeholder {
+  color: var(--text);
+  opacity: 0.5;
+}
+
