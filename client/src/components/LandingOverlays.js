@@ -42,26 +42,31 @@ function SignUpOverlay() {
   }
   function selectImage(number) {
     let avatar;
-    let prevSelected
+    let prevSelected;
     prevSelected = document.querySelector(".imgSelected");
     if (prevSelected) {
       prevSelected.classList.remove("imgSelected");
     }
     avatar = document.querySelector(`#avatar_wrapper_${number}`);
     avatar.classList.add("imgSelected");
-    // for (let i = 1; i < 3; i++) {
-    //   if (i === number) {
-    //     avatar = document.querySelector(`#avatar_wrapper_${number}`);
-    //     avatar.style.border = "5px solid #F0E9D9";
-    //     avatar.style.borderRadius = "5px";
-    //     avatar.style.padding = "0"
-    //   } else {
-    //     avatar = document.querySelector(`#avatar_wrapper_${i}`);
-    //     avatar.style.border = "none";
-    //     avatar.style.padding = "5px";
-    //   }
-    // }
+
   }
+  function chooseAvatarComponent() {
+    const avatars = [[avatar_1, "avatar_1", 1], [avatar_2, "avatar_2", 2], [avatar_3, "avatar_3", 3], [avatar_4, "avatar_4", 4], [avatar_5, "avatar_5", 5], [avatar_6, "avatar_6", 6], [avatar_7, "avatar_7", 7], [avatar_8, "avatar_8", 8], [avatar_9, "avatar_9", 9], [avatar_10, "avatar_10", 10], [avatar_11, "avatar_11", 11], [avatar_12, "avatar_12", 12]];
+    
+    let html = avatars.map((avatar) => {
+      return (
+        <label htmlFor={avatar[1]} id={`avatar_wrapper_${avatar[2]}`} onClick={() => selectImage(avatar[2])}>
+          <img src={avatar[0]} alt="profile pic option" height={300} width={300}/>
+          <input type="radio" id={avatar[1]} name="avatar" value={avatar[1]} style={{display: "none"}}/>
+        </label>
+      )
+
+    });
+
+    return html;
+  }
+
   return (
     <div className="overlayWrapper" id="signUp">
         <svg className="theX" onClick={closeOverlay}xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -84,18 +89,12 @@ function SignUpOverlay() {
             <p>Choose Profile Picture</p>
           </label>
           <div id="imageOptions">
-            <label htmlFor="avatar_1" id="avatar_wrapper_1" onClick={() => selectImage(1)}>
-              <img src={avatar_1} alt="profile pic option" height={300} width={300}/>
-              <input type="radio" id="avatar_1" name="avatar" value="avatar_1"  style={{display: "none"}}/>
-            </label>
-          <label htmlFor="avatar_2" id="avatar_wrapper_2" onClick={() => selectImage(2)}>
-              <img src={avatar_2} alt="profile pic option" height={300} width={300}/>
-              <input type="radio" id="avatar_2" name="avatar" value="avatar_2" style={{display: "none"}}/>
-          </label>
+          {chooseAvatarComponent()}
           </div>
           <input type="submit" value="Sign up" />
         </form>
     </div>
   );
 }
+
 export {LogInOverlay, SignUpOverlay};

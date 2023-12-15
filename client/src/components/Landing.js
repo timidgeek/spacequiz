@@ -1,5 +1,5 @@
 import hero from '../images/hero_logo.png';
-import './App.css';
+import './Landing.css';
 import { LogInOverlay, SignUpOverlay } from './LandingOverlays.js'
 
 function Landing() {
