@@ -73,3 +73,35 @@ input[type=text] {
   opacity: 0.5;
 }
 
+#imageOptions {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#imageOptions label {
+  width: 100px; /* Adjust the size as needed */
+  height: 100px; /* Adjust the size as needed */
+}
+label img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  cursor: pointer;
+  border: none;
+  padding: 5px;
+}
+
+.imgSelected {
+  border: 2px solid var(--cream);
+  /* box shadow with 5px blurred 8 px spread */
+  box-shadow: 0px 0px 5px 5px rgba(246, 114, 128, 0.25);
+  padding: 0;
+}
+.imgSelected img {
+  border: none;
+  padding: 0;
+}
+.imgNotSelected {
+  border: none;
+  padding: 5px;
+}
