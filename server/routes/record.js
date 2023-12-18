@@ -7,6 +7,9 @@ const recordRoutes = express.Router();
  
 // This will help us connect to the database
 const dbo = require("../db/conn");
+
+// authenticcate space user
+const authUser = require("../auth/spaceAuth");
  
 // This helps convert the id from string to ObjectId for the _id.
 const ObjectId = require("mongodb").ObjectId;
@@ -79,6 +82,11 @@ recordRoutes.route("/:id").delete((req, response) => {
    console.log("1 document deleted");
    response.json(obj);
  });
+});
+
+// create protected route for auth
+recordRoutes.route("/protected").get(authUser, (req, res) => {
+  res.json({ message: "This is a protected route", user: req.user });
 });
  
 module.exports = recordRoutes;
