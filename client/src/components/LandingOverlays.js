@@ -17,7 +17,7 @@ function LogInOverlay() {
     function closeOverlay() {
         document.querySelector(".overlayWrapper#login").style.display = "none";
     }
-    const [form, setForm] = useState({
+    const [logInForm, setForm] = useState({
       username: "",
       password: "",
     });
@@ -28,8 +28,10 @@ function LogInOverlay() {
         return { ...prev, ...value };
       });
     }
-    async function onSubmit(e) {
-      const user = {...form};
+    async function onLogInSubmit(e) {
+      e.preventDefault();
+      const user = {...logInForm};
+      console.log('submitting', user);
 
       await fetch('http://localhost:5000/auth/login', {
         method: 'POST',
@@ -38,23 +40,21 @@ function LogInOverlay() {
         },
         body: JSON.stringify(user)
       })
-      .catch(err => console.log(err));
-
-      
+      .catch(err => console.log(err))
     }
   return (
     <div className="overlayWrapper" id="login">
         <svg className="theX" onClick={closeOverlay}xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
           <path d="M3.59236 0L0 3.59236L1.8344 5.42675L6.36943 10.0382L1.8344 14.5732L0 16.3312L3.59236 20L5.42675 18.1656L10.0382 13.5541L14.5732 18.1656L16.3312 20L20 16.3312L18.1656 14.5732L13.5541 10.0382L18.1656 5.42675L20 3.59236L16.3312 0L14.5732 1.8344L10.0382 6.36943L5.42675 1.8344L3.59236 0Z" fill="#F8B195"/>
         </svg>
-        <form onSubmit={onSubmit}>
+        <form onSubmit={onLogInSubmit}>
           <label className="textInput">
             Username:
             <input 
               type="text"
               name="username"
               placeholder="Username" 
-              value={form.username}
+              value={logInForm.username}
               onChange={(e) => updateForm({ username: e.target.value })}
             />
           </label>
@@ -64,7 +64,7 @@ function LogInOverlay() {
               type="text"
               name="password"
               placeholder="Password"
-              value={form.password}
+              value={logInForm.password}
               onChange={(e) => updateForm({ password: e.target.value })}
               />
           </label>
@@ -96,7 +96,14 @@ function SignUpOverlay() {
       return (
         <label htmlFor={avatar[1]} id={`avatar_wrapper_${avatar[2]}`} onClick={() => selectImage(avatar[2])}>
           <img src={avatar[0]} alt="profile pic option" height={300} width={300}/>
-          <input type="radio" id={avatar[1]} name="avatar" value={avatar[1]} style={{display: "none"}}/>
+          <input
+            type="radio"
+            id={avatar[1]}
+            name="avatar"
+            value={avatar[1]}
+            style={{display: "none"}}
+            onChange={(e) => updateForm({ avatar: e.target.value })}
+            />
         </label>
       )
 
@@ -104,24 +111,70 @@ function SignUpOverlay() {
 
     return html;
   }
+  const [form, setForm] = useState({
+    username: "",
+    password: "",
+    planetOfOrigin: "",
+    avatar: "",
+  });
+  
+  // These methods will update the state properties.
+  function updateForm(value) {
+    return setForm((prev) => {
+      return { ...prev, ...value };
+    });
+  }
+  async function onSubmit(e) {
+    e.preventDefault();
+    const user1 = {...form};
+    console.log('submitting', user1);
+
+    await fetch('http://localhost:5000/auth/register', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(user1)
+    })
+    .catch(err => console.log(err))
+    .then(res => res.json());
+  }
 
   return (
     <div className="overlayWrapper" id="signUp">
         <svg className="theX" onClick={closeOverlay}xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
           <path d="M3.59236 0L0 3.59236L1.8344 5.42675L6.36943 10.0382L1.8344 14.5732L0 16.3312L3.59236 20L5.42675 18.1656L10.0382 13.5541L14.5732 18.1656L16.3312 20L20 16.3312L18.1656 14.5732L13.5541 10.0382L18.1656 5.42675L20 3.59236L16.3312 0L14.5732 1.8344L10.0382 6.36943L5.42675 1.8344L3.59236 0Z" fill="#F8B195"/>
         </svg>
-        <form>
+        <form onSubmit={onSubmit}>
           <label className="textInput">
             Username:
-            <input type="text" name="username" placeholder="Username" />
+            <input
+              type="text"
+              name="username"
+              placeholder="Username"
+              value={form.username}
+              onChange={(e) => updateForm({ username: e.target.value })}
+              />
           </label>
           <label className="textInput">
             Password:
-            <input type="text" name="password" placeholder="Password"/>
+            <input
+              type="text"
+              name="password"
+              placeholder="Password"
+              value={form.password}
+              onChange={(e) => updateForm({ password: e.target.value })}
+              />
           </label>
           <label className="textInput">
             Planet of Origin:
-            <input type="text" name="password" placeholder="Planet of Origin"/>
+            <input
+              type="text"
+              name="password"
+              placeholder="Planet of Origin"
+              value={form.planetOfOrigin}
+              onChange={(e) => updateForm({ planetOfOrigin: e.target.value })}
+              />
           </label>
           <label>
             <p>Choose Profile Picture</p>
