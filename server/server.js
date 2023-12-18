@@ -3,11 +3,16 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const crypto = require("crypto");
 
 const app = express();
 
 require("dotenv").config({ path: "./config.env" });
 const port = process.env.PORT || 5000;
+
+// generate random secret key
+const secretKey = crypto.randomBytes(32).toString("hex");
+
 
 mongoose.connect(process.env.ATLAS_URI, {
   useNewUrlParser: true,
@@ -24,9 +29,9 @@ const User = require("./models/spaceUsers");
 
 app.post("/auth/register", async (req, res) => {
   try {
-    const { username, password, planetOfOrigin } = req.body;
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const newUser = new User({ username: username, password: hashedPassword, planetOfOrigin: planetOfOrigin });
+    const { username, password, planetOfOrigin, avatar } = req.body;
+    const hashedPassword = await bcrypt.hash(password, 15);
+    const newUser = new User({ username: username, password: hashedPassword, planetOfOrigin: planetOfOrigin, avatar: avatar });
     await newUser.save();
     res.status(201).json({ message: "User registered successfully!" });
   } catch (error) {
@@ -40,7 +45,7 @@ app.post("/auth/login", async (req, res) => {
     const user = await User.findOne({ username });
 
     if (user && bcrypt.compareSync(password, user.password)) {
-      const token = jwt.sign({ userId: user._id }, "secret-space-key", { expiresIn: "1h" });
+      const token = jwt.sign({ userId: user._id }, secretKey, { expiresIn: "24h" });
       res.json({ token });
     } else {
       res.status(401).json({ message: "Invalid credentials" });
@@ -57,7 +62,6 @@ app.listen(port, () => {
   // Perform a database connection when server starts
   dbo.connectToServer(function (err) {
     if (err) console.error(err);
- 
   });
   console.log(`Server is running on port: ${port}`);
 });
