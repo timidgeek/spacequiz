@@ -17,10 +17,20 @@ button {
     color: var(--text);
     background-color: var(--plum);
   }
+  button.primary:hover {
+    background-color: var(--secondary);
+  }
+  button.secondary:hover {
+    background-color: var(--primary);
+  }
   button.primary.cta {
     margin: 30px 0;
     font-size: 20px;
     padding: 24px 30px;
+  }
+
+  p {
+    color: var(--text);
   }
   
   .hero-logo {
