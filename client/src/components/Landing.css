@@ -17,9 +17,15 @@ button {
     color: var(--text);
     background-color: var(--plum);
   }
+  button.primary.cta {
+    margin: 30px 0;
+    font-size: 20px;
+    padding: 24px 30px;
+  }
   
   .hero-logo {
-    height: 50vmin;
+    height: 425px;
+    margin: 50px;
     pointer-events: none;
   }
 
