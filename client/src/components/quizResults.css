@@ -1,0 +1,76 @@
+@import 'root.css';
+
+.quizResultsWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 50px;
+    width: 75vw;
+    background-color: var(--accent);
+    border-radius: 25px;
+}
+
+.quizResultsHeader {
+    box-sizing: border-box;
+    background-color: var(--background);
+    text-align: left;
+    width: 90%;
+    color: var(--text);
+    font-size: 48px;
+    font-weight: bold;
+    border-radius: 5px;
+    padding: 30px 30px 50px 30px;
+    margin: 30px;
+    box-shadow: 14px 14px 0px 0px rgba(0,0,0,0.2);
+
+}
+.quizResultsHeader span{
+    font-style: italic;
+}
+
+.quizResultsContentWrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.quizResultsCopyWrapper {
+    display: inline-block;
+    box-sizing: content-box;
+    text-align: center;
+    width: 40%;
+    height: 300px;
+    margin: 50px;
+    background-color: var(--secondary);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+
+}
+.quizResultsCopyWrapper div {
+    color: var(--cream);
+    font-size: 20px;
+    font-weight: bold;
+    padding: 1vmax 16px;
+
+}
+.imgWrapper {
+    display: inline-block;
+    height: 100%;
+    display: inline-block;
+    width: 50%;
+
+}
+/* this is the child */
+.resultImg {
+    width: 100%;
+    height: fit-content;
+    object-fit: cover;
+    margin: 20px;
+    box-shadow: 0px 4px 100px 50px rgba(246, 114, 128, 0.5);
+}
