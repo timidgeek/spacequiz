@@ -1,15 +1,18 @@
-import tempImg from "../images/404.jpg";
+
 import './quizResults.css';
-function QuizResults() {
+
+
+function QuizResults(props) {
+    const result = props.result;
     return (
         <div className="quizResultsWrapper">
-            <h1 className="quizResultsHeader">You are: <span >Lost?</span></h1>
+            <h1 className="quizResultsHeader">You are: <span >{result.result}</span></h1>
             <div className="quizResultsContentWrapper">
                 <div className="quizResultsCopyWrapper">
-                    <div>results copy results copy results copy results copy results copy results copy results copy results copy results copy results copy results copy results copy results copy results copy results copy results copy results copy </div>
+                    <div>{result.text}</div>
                 </div>
                 <div className="imgWrapper">
-                    <img className="resultImg"src={tempImg}></img>
+                    <img className="resultImg"src={result.img} alt={result.imgAlt}></img>
                 </div>
             </div>
         </div>

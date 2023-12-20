@@ -11,6 +11,7 @@ function QuizQuestionComponent(props) {
                 {quizQuestion.answers.map(answer => {
                     return (
                         <li className="answer">
+                            <label htmlFor=""></label>
                             <p>{answer.answer}</p>
                             <input type="radio" name="answer" value={answer.weight} />
                         </li>
