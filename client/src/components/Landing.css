@@ -9,18 +9,28 @@ button {
     line-height: normal;
   }
   
-  button.primary {
+.primary {
     color: var(--background);
     background-color: var(--primary);
   }
-  button.secondary {
+.secondary {
     color: var(--text);
     background-color: var(--plum);
   }
-  button.primary.cta {
+.primary:hover {
+    background-color: var(--secondary);
+  }
+.secondary:hover {
+    background-color: var(--primary);
+  }
+.primary.cta {
     margin: 30px 0;
     font-size: 20px;
     padding: 24px 30px;
+  }
+
+  p {
+    color: var(--text);
   }
   
   .hero-logo {

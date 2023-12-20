@@ -33,6 +33,10 @@
   font-size: 30px;
   cursor: pointer;
 }
+.theX:hover {
+  color: var(--primary);
+
+}
 
 form {
   display: flex;
