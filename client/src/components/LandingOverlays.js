@@ -40,6 +40,13 @@ function LogInOverlay() {
         },
         body: JSON.stringify(user)
       })
+      .then(res => {
+        console.log(res.json());
+        document.querySelector(".notLoggedInWrapper").style.display = "none";
+        document.querySelector(".loggedInWrapper").style.display = "flex";
+        closeOverlay();
+        document.querySelector(".notLoggedInButtons").style.display ="none";
+      })
       .catch(err => console.log(err))
     }
   return (
@@ -68,7 +75,7 @@ function LogInOverlay() {
               onChange={(e) => updateForm({ password: e.target.value })}
               />
           </label>
-          <input type="submit" value="Log in"/>
+          <input className="primary" type="submit" value="Log in"/>
         </form>
     </div>
   );
@@ -182,7 +189,7 @@ function SignUpOverlay() {
           <div id="imageOptions">
           {chooseAvatarComponent()}
           </div>
-          <input type="submit" value="Sign up" />
+          <input className="primary" type="submit" value="Sign up" />
         </form>
     </div>
   );

@@ -138,3 +138,6 @@ function simulateQuiz() {
 
 // Run the simulated quiz
 simulateQuiz();
+
+
+export default quizData;

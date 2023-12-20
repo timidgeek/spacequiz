@@ -1,16 +1,8 @@
 import "./quizQuestion.css";
 
-const quizQuestion = {
-    question: "can you breathe the air outside?",
-    answers: [
-        {answer: "yes", value: 0},
-        {answer: "no", value: 8},
-        {answer: "i dont know", value: 5},
-        {answer: "yes, but only once", correct: 10}
-    ]
-}
 
-function QuizQuestionComponent() {
+function QuizQuestionComponent(props) {
+    const quizQuestion = props.question;
     return (
         <div className="questionWrapper">
             <h2 className="question">{quizQuestion.question}</h2>
@@ -18,7 +10,7 @@ function QuizQuestionComponent() {
                 {quizQuestion.answers.map(answer => {
                     return (
                         <li className="answer">
-                            <input type="radio" name="answer" value={answer.value} />
+                            <input type="radio" name="answer" value={answer.weight} />
                             {answer.answer}
                         </li>
                     )

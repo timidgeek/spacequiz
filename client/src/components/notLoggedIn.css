@@ -1,14 +1,22 @@
 .notLoggedIn {
-    height: 100vh;
-    width: 100vw;
+    height: 100%;
+    width: 100%;
     background: linear-gradient(180deg, rgba(40, 44, 52, 0.00) 0%, rgba(40, 44, 52, 0.50) 23.96%, #282C34 53.65%), linear-gradient(180deg, rgba(40, 44, 52, 0.00) 0%, rgba(40, 44, 52, 0.50) 23.96%, #282C34 53.65%);
     position: absolute;
     bottom: -120%;
+    left: 0;
 }
 
 .notLoggedInButtons {
     position: absolute;
     bottom: -100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.loggedInWrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
