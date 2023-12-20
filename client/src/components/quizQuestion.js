@@ -2,6 +2,7 @@ import "./quizQuestion.css";
 
 
 function QuizQuestionComponent(props) {
+
     const quizQuestion = props.question;
     return (
         <div className="questionWrapper">
@@ -10,8 +11,8 @@ function QuizQuestionComponent(props) {
                 {quizQuestion.answers.map(answer => {
                     return (
                         <li className="answer">
+                            <p>{answer.answer}</p>
                             <input type="radio" name="answer" value={answer.weight} />
-                            {answer.answer}
                         </li>
                     )
                 })}

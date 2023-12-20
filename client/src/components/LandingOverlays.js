@@ -13,6 +13,20 @@ import avatar_11 from '../images/avatar_11.png';
 import avatar_12 from '../images/avatar_12.png';
 import React, { useState } from "react";
 
+function visuallyLogIn(method) {
+
+  if (method === "logIn") {
+    document.querySelector(".overlayWrapper#login").style.display = "none";
+
+  } else if (method === "signUp") {
+    document.querySelector(".overlayWrapper#signUp").style.display = "none";
+
+  }
+  document.querySelector(".notLoggedInButtons").style.display = "none";
+  document.querySelector(".loggedInWrapper").style.display = "flex";
+  document.querySelector(".notLoggedInWrapper").style.display = "none";
+}
+
 function LogInOverlay() {
     function closeOverlay() {
         document.querySelector(".overlayWrapper#login").style.display = "none";
@@ -41,11 +55,7 @@ function LogInOverlay() {
         body: JSON.stringify(user)
       })
       .then(res => {
-        console.log(res.json());
-        document.querySelector(".notLoggedInWrapper").style.display = "none";
-        document.querySelector(".loggedInWrapper").style.display = "flex";
-        closeOverlay();
-        document.querySelector(".notLoggedInButtons").style.display ="none";
+        visuallyLogIn("logIn");
       })
       .catch(err => console.log(err))
     }
@@ -143,8 +153,11 @@ function SignUpOverlay() {
       },
       body: JSON.stringify(user1)
     })
-    .catch(err => console.log(err))
-    .then(res => res.json());
+    .then(res => {
+      visuallyLogIn("signUp");
+    })
+
+    .catch(err => console.log(err));
   }
 
   return (
