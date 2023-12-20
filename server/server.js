@@ -10,10 +10,6 @@ const app = express();
 require("dotenv").config({ path: "./config.env" });
 const port = process.env.PORT || 5000;
 
-// generate random secret key
-const secretKey = crypto.randomBytes(32).toString("hex");
-
-
 mongoose.connect(process.env.ATLAS_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -45,7 +41,7 @@ app.post("/auth/login", async (req, res) => {
     const user = await User.findOne({ username });
 
     if (user && bcrypt.compareSync(password, user.password)) {
-      const token = jwt.sign({ userId: user._id }, secretKey, { expiresIn: "24h" });
+      const token = jwt.sign({ userId: user._id }, process.env.SECRET_KEY, { expiresIn: "24h" });
       res.json({ token });
     } else {
       res.status(401).json({ message: "Invalid credentials" });
