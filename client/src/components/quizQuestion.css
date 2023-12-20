@@ -33,7 +33,7 @@ ul {
     margin: 50px;
 
 }
-.answer {
+.answer{
     background-color: var(--primary);
     color: var(--cream);
     padding: 50px;
@@ -44,11 +44,18 @@ ul {
     font-weight: bold;
 }
 
-.answer input {
-    display: none;
+input[type=radio] {
+    /* display: none; */
+}
+.input[type=radio]:checked + .answer {
+    background-color: var(--secondary);
 }
 
 .answer:hover {
     background-color: var(--secondary);
     cursor: pointer;
+}
+
+li:checked {
+    background-color: var(--secondary);
 }
