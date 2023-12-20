@@ -1,3 +1,6 @@
+import React, { useState } from 'react';
+import "./quizLogic.css";
+
 const quizData = [
 {
   question: "Can you breathe the air outside?",
@@ -72,6 +75,24 @@ const quizData = [
   ]
 }];
 
+
+// Determine the result based on the score
+function determineResult(score) {
+  let result = '';
+
+  if (score <= 10) {
+    result = 'You are at Holberton.';
+  } else if (score > 10 && score <= 70) {
+    result = 'You are Lost?';
+  } else if (score > 50 && score < 100) {
+    result = 'It seems you are exploring Uranus.';
+  } else if (score <= 100) {
+    result = 'You are on the Sun.';
+  }
+
+  return result;
+};
+
 // Calculate score based on selected answer
 function calculateScore(selectedAnswer) {
   let totalScore = 0;
@@ -89,24 +110,76 @@ function calculateScore(selectedAnswer) {
   }
 
   return totalScore;
-}
+};
 
-// Determine the result based on the score
-function determineResult(score) {
-  let result = '';
+// THE BIG KAHUNA
+function QuizComponent() {
+  // Tracking the index of questions array
+  const [ currentQuestion, setCurrentQuestion ] = useState(0);
+  // Tracking user's answer selection
+  const [userSelections, setUserSelections] = useState({});
 
-  if (score <= 10) {
-    result = 'You are at Holberton.';
-  } else if (score > 10 && score <= 70) {
-    result = 'You are Lost?';
-  } else if (score > 50 && score < 100) {
-    result = 'It seems you are exploring Uranus.';
-  } else if (score <= 100) {
-    result = 'You are on the Sun.';
-  }
+  const handleAnswerSelection = (selectedAnswer) => {
+    // Get all key/value pairs from userSelections
+    setUserSelections({
+      ...userSelections,
+      [currentQuestion]: selectedAnswer,
+    });
+  };
 
-  return result;
-}
+  const renderAnswers = (question) => {
+    return question.answers.map((answer, index) => {
+      <li className="answer" key={index}>
+        <input
+        type="radio"
+        name={`answer${currentQuestion}`}
+        value={answer.answer}
+        onChange={() => handleAnswerSelection(answer.answer)} />
+        {answer.answer}
+      </li>
+    });
+  };
+
+  const calculateTotalScore = () => {
+    let totalScore = 0;
+
+    Object.keys(userSelections).forEach((questionIndex) => {
+      const selectedAnswer = userSelections[questionsIndex];
+      totalScore += calculateScore(selectedAnswer);
+    });
+
+    return totalScore
+  };
+
+  const handleFinishQuiz = () => {
+    const totalScore = calculateTotalScore();
+    const result = determineResult(totalScore);
+
+    return (
+      <div>
+        <h2>{result}</h2>
+      </div>
+    );
+  };
+
+  return (
+      <div className="questionWrapper">
+          <h2 className="question">
+            {quizData[currentQuestion].question}</h2>
+          <ul className="answersWrapper">
+              {renderAnswers(quizData[currentQuestion])}</ul>
+          {currentQuestion < quizData.length - 1 && (
+            <button onClick={() => setCurrentQuestion(currentQuestion + 1)}>Next</button>
+          )}
+          {currentQuestion === quizData.length - 1 && (
+            <button onClick={handleFinishQuiz}>Finish</button>
+          )}
+      </div>
+  )
+} 
+
+
+/* TESTING ------------------------------------
 
 // Simulate a user taking the quiz
 function simulateQuiz() {
@@ -138,6 +211,6 @@ function simulateQuiz() {
 
 // Run the simulated quiz
 simulateQuiz();
+---------------------------------------------- */
 
-
-export default quizData;
+export default QuizComponent;
