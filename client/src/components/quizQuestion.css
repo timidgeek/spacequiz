@@ -9,6 +9,7 @@
     width: 75vw;
     background-color: var(--accent);
     border-radius: 25px;
+    position: relative;
 }
 .question {
     background-color: var(--background);
@@ -30,22 +31,25 @@ ul {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
     width: 90%;
-    margin: 50px;
+    margin: 30px;
 
 }
 .answer{
     background-color: var(--primary);
     color: var(--cream);
-    padding: 50px;
+    padding: 20px;
     text-align: center;
     border-radius: 5px;
     margin: 10px;
-    font-size: 32px;
+    font-size: 26px;
     font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 input[type=radio] {
-    /* display: none; */
+    display: none;
 }
 .input[type=radio]:checked + .answer {
     background-color: var(--secondary);
@@ -58,4 +62,15 @@ input[type=radio] {
 
 li:checked {
     background-color: var(--secondary);
+}
+
+.quizSparkle1 {
+    position: absolute;
+    top: -130px;
+    left: -130px;
+}
+.quizSparkle2 {
+    position: absolute;
+    bottom: -130px;
+    right: -200px;
 }
