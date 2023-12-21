@@ -1,6 +1,6 @@
 import QuizQuestionComponent from './quizQuestion.js';
 import './notLoggedIn.css'
-import quizData from './quizlogic.js';
+import quizData from './quizData.js';
 import QuizResults from './quizResults.js'
 import TempAllResults from './tempAllResults.js';
 
