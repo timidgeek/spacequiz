@@ -71,10 +71,10 @@ li:checked {
 .quizSparkle1 {
     position: absolute;
     top: -130px;
-    left: -130px;
+    left: -180px;
 }
 .quizSparkle2 {
     position: absolute;
     bottom: -130px;
-    right: -200px;
+    right: -230px;
 }

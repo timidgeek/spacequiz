@@ -24,8 +24,9 @@ function Quiz() {
             totalScore += parseInt(answer.weight);
         });
         let result = determineResult(totalScore);
-        console.log(totalScore);
-        console.log(answers);
+        document.getElementById(result).style.display = "flex";
+        window.scrollTo(0, document.body.scrollHeight);
+        console.log(determineResult(totalScore));
     }
 
     return (

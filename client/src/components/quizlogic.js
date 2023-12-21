@@ -3,13 +3,13 @@ function determineResult(score) {
   let result = '';
 
   if (score <= 10) {
-    result = 'You are at Holberton.';
+    result = 'holberton';
   } else if (score > 10 && score <= 70) {
-    result = 'You are Lost?';
+    result = 'lost';
   } else if (score > 50 && score < 100) {
-    result = 'It seems you are exploring Uranus.';
-  } else if (score <= 100) {
-    result = 'You are on the Sun.';
+    result = 'uranus';
+  } else if (score >= 100) {
+    result = 'sun';
   }
 
   return result;
