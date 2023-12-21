@@ -13,11 +13,14 @@ function Landing() {
     window.scrollTo(0,0);
     document.querySelector(".overlayWrapper#signUp").style.display = "flex";
   }
+  function takeOurQuiz() {
+    window.scrollTo(0,650);
+  }
   return (
     <div className="App">
       <header className="App-header">
         <img src={hero} className="hero-logo" alt="are you: Lost in Space?" />
-        <button className="primary cta">Take Our Quiz!</button>
+        <button className="primary cta"onClick={takeOurQuiz}>Take Our Quiz!</button>
         <div id="quizWrapper">
           <Quiz />
         </div>
