@@ -114,31 +114,18 @@ function calculateScore(selectedAnswer) {
 
 // THE BIG KAHUNA
 function QuizComponent() {
-  // Tracking the index of questions array
-  const [ currentQuestion, setCurrentQuestion ] = useState(0);
   // Tracking user's answer selection
   const [userSelections, setUserSelections] = useState({});
 
-  const handleAnswerSelection = (selectedAnswer) => {
-    // Get all key/value pairs from userSelections
-    setUserSelections({
-      ...userSelections,
-      [currentQuestion]: selectedAnswer,
-    });
-  };
+  // HANDLE ANSWER SELECTION
+  // const handleAnswerSelection = (selectedAnswer) => {
+  //   // Get all key/value pairs from userSelections
+  //   setUserSelections({
+  //     ...userSelections,
+  //     [currentQuestion]: selectedAnswer,
+  //   });
+  // };
 
-  const renderAnswers = (question) => {
-    return question.answers.map((answer, index) => {
-      <li className="answer" key={index}>
-        <input
-        type="radio"
-        name={`answer${currentQuestion}`}
-        value={answer.answer}
-        onChange={() => handleAnswerSelection(answer.answer)} />
-        {answer.answer}
-      </li>
-    });
-  };
 
   const calculateTotalScore = () => {
     let totalScore = 0;
@@ -161,21 +148,6 @@ function QuizComponent() {
       </div>
     );
   };
-
-  return (
-      <div className="questionWrapper">
-          <h2 className="question">
-            {quizData[currentQuestion].question}</h2>
-          <ul className="answersWrapper">
-              {renderAnswers(quizData[currentQuestion])}</ul>
-          {currentQuestion < quizData.length - 1 && (
-            <button onClick={() => setCurrentQuestion(currentQuestion + 1)}>Next</button>
-          )}
-          {currentQuestion === quizData.length - 1 && (
-            <button onClick={handleFinishQuiz}>Finish</button>
-          )}
-      </div>
-  )
 } 
 
 
