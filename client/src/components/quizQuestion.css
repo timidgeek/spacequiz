@@ -34,6 +34,7 @@ ul {
     margin: 30px;
 
 }
+
 .answer{
     background-color: var(--primary);
     color: var(--cream);
@@ -47,9 +48,12 @@ ul {
     align-items: center;
     justify-content: center;
 }
+.selected {
+    background-color: var(--secondary) !important;
 
+}
 input[type=radio] {
-    display: none;
+    /* display: none; */
 }
 .input[type=radio]:checked + .answer {
     background-color: var(--secondary);
